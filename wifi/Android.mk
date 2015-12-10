@@ -42,8 +42,11 @@ endif
 ifdef WIFI_EXT_MODULE_NAME
 LOCAL_CFLAGS += -DWIFI_EXT_MODULE_NAME=\"$(WIFI_EXT_MODULE_NAME)\"
 endif
-
+ifeq ($(strip $(BOARD_WIFI_VENDOR)), realtek)
+LOCAL_SRC_FILES += ../../hardware/actions/wlan/realtek/libhardware_legacy/wifi/wifi_realtek.c
+else
 LOCAL_SRC_FILES += wifi/wifi.c
+endif
 
 ifeq ($(BOARD_HAVE_SAMSUNG_WIFI),true)
 LOCAL_CFLAGS += -DSAMSUNG_WIFI
